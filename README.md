@@ -1,7 +1,9 @@
-The two main theorems of this thesis are Serre's characterization of regular local
-rings, which says that a Noetherian local ring is regular if and only if its global
-dimension is nite and in that case global dimension and Krull dimension are equal;
-the second theorem says that any regular local ring is a unique factorization domain.
-We study notion of dimension from both homological algebraic and ring theoretic
-perspective, and properties of a regular local ring. We nally prove the theorems
-using results from commutative algebra and homological algebra.
+My Masters' Thesis explores two foundational theorems in commutative algebra:
+
+- **Serre's Characterization of Regular Local Rings**: A Noetherian local ring is regular if and only if it has finite global dimension. Moreover, in this case, the global dimension equals the Krull dimension.
+
+- **Regular Local Rings are UFDs**: Every regular local ring is a unique factorization domain (UFD).
+
+I studied key properties of regular local rings and the notion of dimension from both the homological and ring-theoretic perspectives. The theorems are proved using tools and results from commutative algebra and homological algebra. 
+
+Note: The proofs are not original work. Appropriate references have been provided in the report.
