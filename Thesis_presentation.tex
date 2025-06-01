@@ -1,0 +1,491 @@
+\documentclass[
+	11pt, % Set the default font size, options include: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
+	%t, % Uncomment to vertically align all slide content to the top of the slide, rather than the default centered
+	%aspectratio=169, % Uncomment to set the aspect ratio to a 16:9 ratio which matches the aspect ratio of 1080p and 4K screens and projectors
+]{beamer}
+
+\graphicspath{{Images/}{./}} % Specifies where to look for included images (trailing slash required)
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule for better rules in tables
+
+\usetheme{Madrid}
+
+\usefonttheme{default} % Typeset using the default sans serif font
+
+\usepackage{palatino} % Use the Palatino font for serif text
+
+%\usepackage{helvet} % Use the Helvetica font for sans serif text
+\usepackage[default]{opensans} % Use the Open Sans font for sans 
+\useinnertheme{circles}
+\usepackage[T1]{fontenc}                  		 % Erd\H{o}s !
+\usepackage{verbatim} 
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{enumerate}
+\usepackage{semantic}
+\usepackage{mathtools} 	
+\usepackage{amsmath,amsthm}
+\usecolortheme{default}
+%\usepackage{hyperref}
+%.........................................................Comments.............................
+\newcommand{\N}{\mathbb{N}}                         % Set of Natural numbers
+\newcommand{\R}{\mathbb{R}}                          % Set of real numbers
+\newcommand{\Z}{\mathbb{Z}}                          %  Set of Integers
+\newcommand{\fract}[1] { \frac{1}{#1} }              % Fraction with numerator 1
+\newcommand{\changefont}{ \fontsize{8}{12}\selectfont}		% Command to change font size. To be used in footer
+\newcommand{\T}{\text}							% \text inside $ $	
+\newcommand{\B}{\textbf}						%  Written in bold
+\newcommand{\I}{\emph}						%  Written in italics
+\newcommand{\U}{\underline}						%  Written in underline
+%.......................The Arrows (Works between $$ only) .................
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\xra}{\xrightarrow}	
+\newcommand{\mf}{\mathfrak}
+%  $\xrightarrow[\text{world}]{\text{hello}}$  : Writes 'hello' above arrow and 'world' below arrow
+%........................ Coloured boxes ........................
+\newcommand{\CP}{\fcolorbox{pink}{pink}}
+\newcommand{\CY}{\fcolorbox{yellow}{yellow}}
+\newcommand{\CG}{\fcolorbox{lightgray}{lightgray}}	   	%  gray : US spelling of grey
+\newcommand{\Cp}{\fcolorbox{pink}{white}}
+\newcommand{\pt}{18pt}
+
+\newcommand{\da}{\Leftrightarrow} 		%Double arrow
+\newcommand{\lda}{\Longleftrightarrow} 	% LongDouble arrow
+%..................\usepackage{tikz-cd}				% For commutative Diagram
+%--------------------------------------------------------------
+\title[Master's Thesis Presentation]{Homological Characterization and Unique Factorization Property}
+\subtitle{ of Regular Local Rings }
+
+\author[Trishita Patra]
+{Trishita Patra\inst{} \\Supervisor: Dr. Md. Ali Zinna}
+
+\institute[] % (optional)
+{
+  \inst{}%
+  Department of Mathematics and Statistics (DMS)\\
+  Indian Institute of Science Education and Research Kolkata (IISER Kolkata)
+}
+
+\date{\today } 
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+%----------------------------------------------------------------------
+\begin{document}
+
+%The next statement creates the title page.
+\frame{\titlepage}
+
+%This block of code is for the table of  contents after
+%the title page
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}
+\frametitle{Aim : To Prove}
+\begin{block}{ Theorem 1 ( Serre's Characterization of Regular Local Rings)}
+    Let $A$ be a noetherian local ring. Then $A$ is regular iff gl.dim$A\,<\infty$  and moreover, if gl.dim$A\,<\infty$, then gl.dim$A\,=$dim $A$.  
+\end{block}
+\pause
+\vspace{0.5cm}
+\begin{block}{ Theorem 2 }
+    Any regular local ring is unique factorization daomain.
+    
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{ Topics studied}
+
+\begin{itemize}
+\renewcommand\labelitemi{--}
+    \item Presented required results from \B{Commutative Algebra} last semester.
+    \item Homological Algebra
+    \begin{itemize}
+    \renewcommand\labelitemi{--}
+        \item Complexes and Homology
+        \item Projective Modules
+        \item Projective Resolution
+        \item The Functors Tor
+        \item The Functors Ext
+        \item Projective Dimension
+        \item Injective Dimension
+        \item Global Dimension
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Cont...}
+\begin{itemize}
+\renewcommand\labelitemi{--}
+    \item Dimension Theory
+    \begin{itemize}
+    \renewcommand\labelitemi{--}
+        \item The Hilbert-Samuel Polynomial
+        \item Dimension Theorem
+    \end{itemize}
+    \item Regular Local Rings
+    \begin{itemize}
+    \renewcommand\labelitemi{--}
+        \item Homological Characterisation
+        \item UFD Property
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{ Definitions and Required Results}
+
+\begin{frame}
+\frametitle{Local ring and Localisation}
+\begin{itemize}
+\renewcommand\labelitemi{--}
+    \item $A$ is a commutative ring with identity and $M$ is a unitary $A$-module. $A$ is called a \B{local ring}, if $A\neq 0$ and has a unique maximal ideal.\pause
+    \item Example : For prime ideal $\mathfrak{p}\,, A_\mathfrak{p} $ is a local ring with maximal ideal $\mathfrak{p}A_\mathfrak{p} $.\pause
+    \item The intersection of all maximal ideals of $A$ is called \B{Jacobson radical}, \underline{r}(A).
+\end{itemize}
+\pause
+\begin{block}{Nakayama's Lemma}
+Let $M$ be a finitely generated $A$-module. If $\underline{r} M=M$, then $M=0$. 
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Samuel Theorem}
+Let $A$ be noetherian local ring with maximal ideal $\mathfrak{m}$.
+\begin{block} {Definition}
+    $\mathfrak{a}$ is called a \B{ideal of definitiion of $A$} if, $\mf{m}^n \subset \mf{a}\subset \mf{m}$, for some integer $n\in \N$.
+\end{block}
+\pause
+Define, $P_{\mf{a}}(M,n) \, = \, l_{A}(M/\mf{a}^n M)$.
+\pause
+\begin{block} {Theorem (Samuel)}
+     For a local ring $A$, a finitely generated $A$-module, $M$ and an ideal of definition of $A$, $\mathfrak{a}$ generated by $r$ elements. Then $P_{\mathfrak{a}}(M, n)$ is a polynomial function of degree less than or equal to $r$.
+\end{block}
+\pause
+Define, d($M$) = deg($P_{\mf{a}}(M,n)$).
+\end{frame}
+
+\begin{frame}
+\frametitle{Dimension Theory}
+\begin{itemize}
+\renewcommand\labelitemi{--}
+    \item\B{Height} of a prime ideal $\mathfrak{p}$,\\
+    ht$\mathfrak{p}=\sup \left\{r \mid\right.$ there exists in $A$ a chain $\left.\mathfrak{p}_{0} \subset \ldots \subset \mathfrak{p}_{r}=\mathfrak{p}\right\}$.\pause
+    \item \B{Coheight} of a prime ideal $\mathfrak{p}$,
+    $$\operatorname{coht} \mathfrak{p}=\sup \left\{r \mid \text { there exists in } A \text { a chain } \mathfrak{p}=\mathfrak{p}_{0} \subset \ldots \subset \mathfrak{p}_{r}\right\}$$\pause
+    \vspace{-0.5cm}
+    \item \B{Krull Dimension of $M$},
+    $$
+    \operatorname{dim} M=\sup_{{\mathfrak{p} \in \operatorname{Supp}(M)}} \operatorname{coht} \mathfrak{p}$$
+    where, Supp$(M) = \{ \mathfrak{p} \in \T{Spec}(A)\,| \,M_{\mathfrak{p}}\neq 0\}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Dimension Theorem}
+\begin{itemize}
+\renewcommand\labelitemi{--}
+    \item dim$A$ = sup\{ lengths of chains of prime ideals in $A$ \}.\pause
+    \item \B{Chevalley dimension s(M)}, for $M\neq 0$, is defined to be the least integer $r$ for which there exist $r$ elements $a_{1}, \ldots, a_{r}$ in $\mathfrak{m}$ such that $M /\left(a_{1}, \ldots, a_{r}\right) M$ is of finite length as an $A$-module. \pause
+    \item If $M = 0$, then dim$M$ = -1 = s(M).
+\end{itemize}
+\pause\begin{block}{Dimension Theorem}
+    Let $M$ be a finitely generated module over a noetherian local ring $A$. Then $\operatorname{dim} M=d(M)=s(M)$.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Global Dimension}
+\begin{block}{Homological Dimension}
+    The least integer $n$, if exixts, such that there exists a projective resolution of $M$, of length $n$.\\
+    If no such $n$ exists, hd$_A(M) \, = \infty$.\\
+    If $M =0\,, \T{hd}_A(M) \, = -1$.
+\end{block}
+\pause
+\begin{block}{Global Dimension}
+    $$\T{gl.dim} A = sup_M ( \T{hd}_A M)$$
+\end{block}
+\pause
+\begin{block}{Result}
+    For a noetherian local ring $A$, we have $$\mathrm{gl} . \operatorname{dim}_{A}= \operatorname{hd}_{A} k$$
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Regular Local Ring}
+\begin{block}{Definition}
+    A noetherian local ring, $A$ with dim$A\, = r$, is said to be \B{regular}, if $\mf{m}$ can be generated by $r$ elements.
+\end{block}
+\pause
+\\
+Set of generators of $\mf{m}$ for regular local rings is called \B{regular system of parameters} of $A
+\\
+\begin{block}{Difinition}
+    For a non-zero $A$-module, $M$, a sequence $a_{1}, \ldots, a_{r}$ of elements of $\mathfrak{m}$ is called an \B{$M$-sequence} if $a_{i}$ is not a zero-divisor of $M /\left(a_{1}, \ldots, a_{i-1}\right) M$ for $1 \leq i \leq r$. \\
+    That is, for $i=1$, the condition means that $a_{1}$ is not a zero divisor of $M$ ...
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Cont...}
+\begin{block}{Proposition}
+   Let $M$ be a non-zero A-module and $a_{1}, \ldots, a_{r}$ an $M$-sequence. Then $r \leq \operatorname{dim} M$.
+\end{block}
+\begin{block}{Corollary*}
+   A noetherian local ring $A$ is regular if and only if its maximal ideal is generated by an A-sequence.
+\end{block}
+\pause
+\begin{block}{Proof}
+\B{Step 1}: $(\Ra)$ Let $\{a_1,\ldots, a_r\}$ generate $\mf{m}$. $A$ is I.D so is $A/(a_1)$. Cont.
+\\
+\B{Step 2}: $(\La)$ Let $\{a_1,\ldots, a_r\}$ be an $A$-sequence. Use previous Proposiition and Samuel's theorem.
+\end{block}
+\end{frame}
+
+\begin{frame}{Required Results}
+\begin{block}{Corollary}
+   A regular local ring is an integral domain.
+\end{block}
+
+\begin{block}{Proposition}
+    Let $A$ be a regular local ring of dimension $r$ and let $a_{1}, \ldots, a_{j}$ be any $j$ elements of $\mathfrak{m}, \,0 \leq j \leq r$. Then the following statements are equivalent:
+    \begin{itemize}
+    \renewcommand\labelitemi{--}
+      \item $\{a_{1}, \ldots, a_{j}\}$ is a part of a regular system of parameters of $A$.
+      \item $A/\left(a_{1}, \ldots, a_{j}\right)$ is a part of a regular local ring of dimension $r-j$.
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Cont...}
+\begin{block}{Lemma*}
+  Let $M$ be a non-zero A-module and let $a \in \mathfrak{m}$ be not a zero divisor of $M$. Then $\operatorname{hd}_{A} M / a M=\operatorname{hd}_{A} M+1$, where both sides may be infinite.
+\end{block}
+\begin{block}{Proof}
+\small{
+\B{Step 1}: $
+0 \rightarrow M \stackrel{a_{M}}{\longrightarrow} M \longrightarrow M / a M \rightarrow 0$
+\\
+\B{Step 2}: Exact sequence: $
+\operatorname{Tor}_{n+1}^{A}(M, k) \rightarrow \operatorname{Tor}_{n+1}^{A}(M / a M, k) \rightarrow \operatorname{Tor}_{n}^{A}(M, k) \stackrel{\operatorname{Tor}_{n}^{A}\left(a_{M}, k\right)}{\longrightarrow} \operatorname{Tor}_{n}^{A}(M, k)
+$
+\\
+\B{Step 3}:
+For every $n \in \mathbb{N}$. Now, since $a$ being in $\mathfrak{m}, a_{k}$ is zero, we get
+$\operatorname{Tor}_{n}^{A}\left(a_{M}, k\right)=a \operatorname{Tor}_{n}^{A}\left(1_{M}, k\right)=\operatorname{Tor}_{n}^{A}\left(1_{M}, a_{k}\right)=0 $
+\\
+\B{Step 4}: For $A$ be a noetherian local ring, $M$ a finitely generated $A$-module, $\operatorname{hd}_{A} M \leq n\, \da$ $\operatorname{Tor}_{n+1}^{A}(M, k)=0$.}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Cont...}
+\begin{block}{Lemma*}
+  \small{ Let $A$ be a noetherian local ring such that $\mathfrak{m} \neq \mathfrak{m}^{2}$ and such that every element of $\mathfrak{m}-\mathfrak{m}^{2}$ is a zero-divisor. Then any A-module of finite homological dimension is free.}
+\end{block}
+\begin{block}{Proof}
+\small{
+\B{Step 1}: $\mf{m}\in$ Ass($M$) \lda k=A / \mathfrak{m} \hookrightarrow A \T{ is an }A-\T{monomorphism}$
+\\
+\B{Step 2}: Exact sequence: $0 \rightarrow k \rightarrow A \rightarrow A / k \rightarrow 0$
+\\
+\B{Step 3}:$
+\operatorname{Tor}_{n+1}^{A}(M, A / k) \rightarrow \operatorname{Tor}_{n}^{A}(M, k) \rightarrow \operatorname{Tor}_{n}^{A}(M, A)
+$
+\\
+\B{Step 4}: We have hd$_A M = n$, $\operatorname{Tor}_{n+1}^{A}(M, A / k)=0$ and $\operatorname{Tor}_{n}^{A}(M, k) \neq 0$, implying $\operatorname{Tor}_{n}^{A}(M, A) \neq 0$. 
+Now, since $A$ is free as $A$-module, $\T{Tor}_n^A (M,A) \, =\, 0\, \forall\, n\geq 1$, which implies that, $n=0$. \\
+\B{Step 5}:$\T{Tor}_1^A (M,k) \, =\, 0 \,\implies \T{hd}_A M\, \leq 0 \, \lda\, M \T{ is projective.}$. Hence $M$ is free.
+}
+\end{block}
+\end{frame}
+
+\begin{frame}{Required Results}
+\begin{block}{Lemma}
+Let $\mathfrak{a}, \mathfrak{b}_{0}, \mathfrak{b}_{1}, \ldots, \mathfrak{b}_{n}$ be ideals of a ring $A$ with $\mathfrak{b}_{0}$ prime and $\mathfrak{a} \subset \bigcup_{0 \leq i \leq n} \mathfrak{b}_{i}$. Then there exists a proper subset $J$ of $\{0,1,2, \ldots, n\}$ such that $\mathfrak{a} \subset \bigcup_{j \in J} \mathfrak{b}_{j}$.
+\end{block}
+\begin{block}{Proposition}
+     Let $A$ be a local ring and $M$ a finitely generated $A$ module. Then the following conditions are equivalent:
+
+    (i) $M$ is free.
+
+    (ii) $M$ is projective.
+\end{block}
+\end{frame}
+   
+\section{Proof of the Theorem 1}
+
+\begin{frame}
+\small{
+\frametitle{Serre's Characterization of Regular Local Rings}
+\begin{block}{ Theorem }
+    Let $A$ be a noetherian local ring. Then $A$ is regular iff gl.dim$A\,<\infty$  and moreover, if gl.dim$A\,<\infty$, then gl.dim$A\,=$dim $A$.
+\end{block}
+\pause
+\begin{block}{Skech of Proof}
+\B{Step 1:} The maximal ideal $\mf{m}$ of $A$ is generated by an $A$-sequence. $\lda$ gl.dim$A\, \leq\, \infty\, \implies$ gl.dim$A\, = \T{ dim}A$. 
+\\
+\B{Step 2:}($\Ra$) Take $A$-sequence, $\T{hd}_A \frac{A}{\mf{m}} = r = \T{gl.dim}A$. Also by Proposition and Samuel's Theorem, dim$A$ = r.
+\\
+\B{Step 3:}($\La$) Induction on $ r=\operatorname{rank}_{k} \mathfrak{m} / \mathfrak{m}^{2}$. $r = 0$, Nakayama's Lemma.
+\\
+\B{step 4}:$r>0$. There exists $a \in \mathfrak{m}-\mathfrak{m}^{2}$ which is not a zero divisor.Since otherwise, $A/\mf{m}$ is free, i.e. $\mf{m} = 0$.
+\\
+\B{Step 5}: $\overline{\mathfrak{m}} / \overline{\mathfrak{m}}^{2}$ is a $k$-vector space with $\operatorname{rank}_{k} \overline{\mathfrak{m}} / \overline{\mathfrak{m}}^{2} = r-1$. use induction hypothesis.
+\end{block}
+}
+\end{frame}
+
+\begin{frame}{Required Results}
+\small{
+\begin{block}{Corollary*}
+   A noetherian local ring $A$ is regular if and only if its maximal ideal is generated by an A-sequence.
+\end{block}
+\begin{block}{Lemma*}
+  Let $M$ be a non-zero A-module and let $a \in \mathfrak{m}$ be not a zero divisor of $M$. Then $\operatorname{hd}_{A} M / a M=\operatorname{hd}_{A} M+1$, where both sides may be infinite.
+\end{block}
+\begin{block}{Lemma*}
+   Let $A$ be a noetherian local ring such that $\mathfrak{m} \neq \mathfrak{m}^{2}$ and such that every element of $\mathfrak{m}-\mathfrak{m}^{2}$ is a zero-divisor. Then any A-module of finite homological dimension is free.
+\end{block}
+\begin{block}{Corollary*}
+   Let $A$ be a noetherian local ring with $\mathrm{gl} . \operatorname{dim} A<\infty$. If $a \in \mathfrak{m}-\mathfrak{m}^{2}$ is not a zero divisor of $A$, then $\mathrm{gl} . \operatorname{dim} A / A a<\infty$.
+\end{block}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Corollary}
+\begin{block}{ Corollary }
+    Let $A$ be a regular local ring and let $\mathfrak{p}$ be a prime ideal of $A$. Then $A_{\mathfrak{p}}$ is a regular local ring.
+\end{block}
+
+\pause
+\begin{block}{Skech of Proof}
+\B{Step 1:} To prove :
+$\mathrm{gl} \cdot \operatorname{dim} A_{\mathfrak{p}} \leq \mathrm{gl} \cdot \operatorname{dim} A$
+\\
+\B{Step 2:} An $A$-free resolution of the $A$-module $A / \mathfrak{p}$ with $n \leq \mathrm{gl}. \operatorname{dim} A$.
+$
+0 \rightarrow F_{n} \rightarrow F_{n-1} \rightarrow \cdots \rightarrow F_{0} \rightarrow A / \mathfrak{p} \rightarrow 0
+$
+\\
+\B{Step 3:} $A_{\mathfrak{p}}$, we obtain an $A_{\mathfrak{p}}$-free resolution of $A_{\mathfrak{p}} / \mathfrak{p} A_{\mathfrak{p}}$,
+$
+0 \rightarrow F_{n} \otimes_{A} A_{\mathfrak{p}} \rightarrow F_{n-1} \otimes_{A} A_{\mathfrak{p}} \rightarrow \cdots \rightarrow F_{0} \otimes_{A} A_{\mathfrak{p}} \rightarrow A_{\mathfrak{p}} / \mathfrak{p} A_{\mathfrak{p}} \rightarrow 0
+$
+\\
+\B{Step 4:} $\mathrm{gl} \cdot \operatorname{dim} A_{\mathfrak{p}}=\operatorname{hd}_{A_{\mathfrak{p}}} A_{\mathfrak{p}} / \mathfrak{p} A_{\mathfrak{p}} \leq n \leq \mathrm{gl} \cdot \operatorname{dim} A$
+\end{block}
+\end{frame}
+
+\section{Proof of the Theorem 2}
+
+\begin{frame}
+\frametitle{UFD property of Regular Local Rings}
+Let $A$ be an ID. 
+\begin{block}{Definition(Prime element)}
+    $p\in A$  is said to be prime if $Ap$ is a prime ideal.
+\end{block}
+\begin{block}{Definition(UFD)}
+    An ID, $A$ is called an UFD if every element can be written as
+$u\prod_{1\leq i\leq n} p_i$, where $u$ is a unit in $A$, $p_i$ are prime elements and $n \in \N$.
+\end{block}
+ \end{frame}
+\begin{frame}
+\frametitle{UFD property of Regular Local Rings}
+\begin{block}{ Lemma }
+   Let $A$ be a noetherian domain. Then $A$ is a unique factorization domain $\lda$ every prime ideal of height 1 of $A$ is principal.
+\end{block}
+\pause
+\begin{block}{Skech of Proof}
+\B{Step 1:}($\Ra$) To show $\mf{p}$ with height 1 is principal. Let $a\in \mf{p}$. then $\exists p|a\ni \,Ap \subset \mf{p}\implies\, Ap = \mf{p}$
+\\
+\B{Step 2:} ($\La$) Any irreducible element, $a$ is prime. Let $\mf{p}$ be a minimal prime ideal with containg $A a$.\\
+By Principal Ideal Theorem, $\mathfrak{p}=A p$ with $p$ prime $p|a$. Hence $\mf{p} =Ap = Aa$ implying $a$ is a prime.
+\end{block}
+\end{frame}
+\begin{frame}
+\frametitle{UFD property of Regular Local Rings}
+\small{
+\begin{block}{ Theorem }
+   Any regular local ring is a UFD.
+\end{block}
+\pause
+\begin{block}{Skech of Proof}
+\B{Step 1:} Induction on dim$A= r$.
+\\
+\B{Step 2:} $r = 0$, $A$ is field. $r\geq 1$, Use previous Lemma.By Nakayama's Lemma $\mf{m} \neq {\mf{m}}^2$. Show $a \in \mathfrak{m}-\mathfrak{m}^{2}$ is prime.
+\\
+\B{Step 3:} Case I : $a\in\mf{p}$. 
+\\
+\B{step 4}: Case II : $a\notin\mf{p}$.
+\\
+\B{Step 5}: Let $S=\left\{1, a, a^{2}, \ldots\right\}$ and let $B=S^{-1} A$. Show $\mf{p}B$ is $B$-projective.
+\\
+i) $B_{qB}$is UFD for $qB$ prime ideal, by IH.
+\\
+ii) $\mf{p} B_{qB}$ is principal, hence $B_{qB}$-free.
+\\
+\B{Step 6}:$\mf{p}B$ has a finite resolution.
+\\
+\B{Step 7}: $\mf{p}B = Bp$. Claim :$\mf{p} = Ap$. 
+\end{block}
+}
+\end{frame}
+
+
+\begin{frame}{Required Results}
+\small{
+\begin{block}{Step II : Proposition*}
+    Let $M$ be an A-module. A set of elements $x_{1}, \ldots, x_{n}$ of $M$ is a minimal set of generators of $M$ if and only if their canonical images $\bar{x}_{1}, \ldots, \bar{x}_{n}$ in $M / \mathfrak{m} M$ form a basis of the $k$-vector space $M / \mathfrak{m} M$. In particular, the cardinality of any minimal set of generators of $M$ is equal to the rank of the $k$-vector space $M / \mathfrak{m} M$.
+\end{block}
+
+\begin{block}{Step II : Corollary}
+    Let $\left\{a_{1}, \ldots, a_{j}\right\}$ be a part of a regular system of parameters of a regular local ring $A$. Then $\mathfrak{p}=\left(a_{1}, \ldots, a_{j}\right)$ is a prime ideal of A of height $j$. 
+\end{block}
+\begin{block}{Step 5 : Lemma*}
+  Let $A$ be a noetherian ring and $P$ a finitely generated $A$ module. Then $P$ is projective if and only if, $P_{\mathfrak{p}}$ is $A_{\mathfrak{p}}$-free for every $\mathfrak{p} \in \operatorname{Spec}(A)$.
+\end{block}
+}
+\end{frame}
+
+\begin{frame}{Required Results}
+\small{
+\begin{block}{Proposition}
+For an A-module $M$ and $n \in \Z^{+}$, TFCE:
+
+(i) $\operatorname{hd}_{A} M \leq n$.
+
+(ii) If $0 \rightarrow K_{n} \rightarrow P_{n-1} \rightarrow \ldots \rightarrow P_{0} \rightarrow M \rightarrow 0$ is exact with $P_{j}$ being A-projective for $0 \leq j \leq n-1$, then $K_{n}$ is A-projective.
+\end{block}
+\begin{block}{Corollary*}
+   Let $\mathfrak{a}$ be a non-zero projective ideal of a ring $A$ such that $\mathfrak{a}$ has a finite free resolution. Then $\mathfrak{a}\cong A$.
+\end{block}
+}
+\end{frame}
+
+
+\begin{frame}{The End}
+\begin{center}
+    \Large{Thank You!}
+\end{center}
+\end{frame}
+
+\end{document} 
