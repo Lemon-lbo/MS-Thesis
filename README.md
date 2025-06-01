@@ -1,4 +1,4 @@
-# MS Thesis: Regular Local Rings
+# MS Thesis: Characterization of Regular Local Rings
 
 This repository contains materials related to my Master’s Thesis in Mathematics, which focuses on two foundational theorems in commutative algebra:
 
