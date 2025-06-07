@@ -20,3 +20,8 @@ The proofs presented in this thesis are **not original work**. All appropriate r
 - `Thesis_presentation.pdf` – Compiled PDF version of the presentation.
 - `Trishita Patra MS Thesis.pdf` – Full thesis report, including detailed proofs and discussions.
 
+## Completion Date
+
+This thesis project was undertaken from **August 2022 to May 2023**.
+
+
